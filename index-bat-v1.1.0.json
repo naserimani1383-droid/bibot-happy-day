@@ -1,0 +1,359 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "784114f3-083c-412e-9f3f-8cf77834e73a",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -976,
+        144
+      ],
+      "webhookId": "d6c27468-f962-4ec3-9a6d-dd5d9ba00715",
+      "credentials": {
+        "telegramApi": {
+          "id": "4YV3fNwda4jIOrmC",
+          "name": "mobser"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM bot_users;",
+        "options": {}
+      },
+      "id": "7866bf30-e62a-4694-a23c-1907e21b88ec",
+      "name": "Read States",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -736,
+        144
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/* ================================================================\n   🧠
+  n\تمام متنها، برنامه مراسم، محصوالت و تنظیمات همینجا ویرایش میشه   n\منطق کامل بات جشن دهسالگی — BRAIN
+================================================================ */\n\nconst CONFIG = {\n 
+شرکت ما', // اسم شرکت' :companyName  n)\BotFather از) توکن جدید بات // ,'TOKEN_BOT_NEW_YOUR ':botToken
+ n\,'سالن اصلی — تهران' :eventPlace  n\,'پنجشنبه ۲۹ بهمن — ساعت ۱۸:۰۰' :eventDate  n\خودت رو اینجا بذار
+contactUrl: 'https://t.me/maryamlashkary', // شرکت با تماس لینک\n  adminIds: [123456789], // عددی آیدی
++ ' برنامه مراسم جشن دهسالگی ��'  n =\AGENDA nconst\n};\n)\stats/ و lottery/ برای) تلگرام ادمینها
+سخنرانی مدیرعامل و مرور — ۱۸:۳۰ •'  n\+' n\\پذیرش و خوشآمدگویی — ۱۸:۰۰ •'  n\+' n\\n '\\+ companyName.CONFIG
+ n\+' n\\معرفی تفصیلی هر محصول — ۱۹:۳۰ •'  n\+' n\\رونمایی از ۳ محصول جدید �� — ۱۹:۰۰ •'  n\+' n\\۱۰ سال فعالیت
+پذیرایی و — ۲۱:۰۰ •'  n\+' n\\کیک دهسالگی و عکس یادگاری �� — ۲۰:۳۰ •'  n\+' n\\مسابقه و قرعهکشی �� — ۲۰:۰۰ •'
+:id    n {\ n = [\PRODUCTS nconst\n';\.هر وقت خواستی از منوی اصلی دوباره سر بزن'  n\+' n\\n\\گفتگوی آزاد
+بات هوشمند مطب و ��'      n\:text    n\,'بات مطب ��' :btn    n\,'بات مطب و کلینیک ��' :label    n\,'1p'
+پاسخدهی ۲۴ ساعته به سواالت بیماران در واتساپ، •'      n\+' n\\n\\:دستیار همیشگی مطب شما'      n\+' n\\n\\کلینیک
+داشبورد مدیریت •'      n\+' n\\ارسال لینک اختصاصی رزرو نوبت به هر مشتری •'      n\+' n\\اینستاگرام و هر پلتفرم دیگه
+ n\, 🙌'دیگه هیچ سوال بیماری بیجواب نمیمونه'      n\+' n\\n\\برای دکتر و کلینیک: همه نوبتها و اطالعات بیماران در یک جا
+},\n  {\n    id: 'p2',\n    label: '👗 لباس فروشگاه بات',\n    btn: '👗 لباس بات',\n    text:\n      '👗
+مشاور خرید و معرفی محصوالت به •'      n\+' n\\n\\:فروش صفر تا صد فروشگاه تو'      n\+' n\\n\\بات فروشگاه لباس
+ •'      n\+' n\\درگاه پرداخت امن داخل همین چت •'      n\+' n\\مدیریت انبار و موجودی کاال •'      n\+' n\\مشتری
+:id    n {\ n\, } n\, 🚀'فروشگاهت ۲۴ ساعته، بدون فروشنده، میفروشه'      n\+' n\\n\\مدیریت کامل سفارشها
+'p3',\n    label: '🔒 )بهزودی )سوم محصول',\n    btn: '🔒 ۳ محصول',\n    text:\n      '🔒 محصول
+این محصول برای اولین بار همینجا، در مراسم دهسالگی'      n\+' n! 👀\\یه سورپرایز برای شب جشن'      n\+' n\\n\\سوم
+ما رو همراهی کن'      n\+' n\\n\\.رونمایی میشه
+اًحتم'�� ,\n  },\n];\n\nconst QUIZ = {\n  question: '🎁 سوال
+':0quiz ':data ,'فقط واتساپ' :label {    n [\:options  n\,'بات مطب ما به کدوم پلتفرمها وصل میشه؟n\\n\\:مسابقه
+:data ,'فقط تلگرام' :label {    n\,' }:1quiz ':data ,'واتساپ، اینستاگرام و هر پلتفرم دیگه' :label {    n\,}
+'quiz:2' },\n  ],\n  correctIndex: 1,\n};\n\n/* ---------------- کیبوردها ----------------* /\nconst
+kb = (rows) => ({ inline_keyboard: rows });\nconst cancelRow = [{ text: '❌ انصراف', callback_data:
+'cancel' }];\nconst menuKb = () => kb([\n  [{ text: '🎉 مراسم برنامه', callback_data: 'agenda' }, {
+text: '🚀 ما محصوالت', callback_data: 'products' }],\n  [{ text: '📝 ثبتنام', callback_data: 'rsvp' },
+{ text: '🎁 مسابقه', callback_data: 'quiz' }],\n  [{ text: '📞 ما با تماس', url: CONFIG.contactUrl
+}],\n]);\nconst backKb = () => kb([[{ text: '🔙 برگشت', callback_data: 'menu' }]]);\nconst
+productsKb = () => kb([\n  PRODUCTS.map((p) => ({ text: p.btn, callback_data: p.id })),\n  [{
+text: '🔙 منو به برگشت', callback_data: 'menu' }],\n]);\nconst quizKb = () =>
+kb([QUIZ.options.map((o) => ({ text: o.label, callback_data: o.data }))]);\n\nconst faDigitsToEn =
+(s) => {\n  const fa = '۰۱۲۳۴۵۶۷۸۹';\n  const ar = '٠١٢٣٤٥٦٧٨٩';\n  return String(s || '')\n   
+.split('')\n    .map((ch) => {\n      const i = fa.indexOf(ch);\n      if (i > -1) return
+String(i);\n      const j = ar.indexOf(ch);\n      if (j > -1) return String(j);\n      return
+ch;\n    })\n    .join('');\n};\n\nconst nowSql = () => new Date().toISOString().slice(0,
+19).replace('T', ' ');\n\n/* ---------------- تلگرام از پیام :ورودی ----------------* /\nconst update =
+$('Telegram Trigger').first().json;\nconst msg = update.message || null;\nconst cb =
+update.callback_query || null;\nconst from = cb ? cb.from : (msg ? msg.from : {});\nconst chatId =
+String(cb ? cb.message.chat.id : msg.chat.id);\nconst userId = String(from.id || '');\nconst
+tgName = [from.first_name, from.last_name].filter(Boolean).join(' ') || 'مهمان\;'nconst username =
+from.username ? '@' + from.username : '';\nconst text = msg && msg.text ? msg.text.trim() :
+'';\nconst data = cb ? (cb.data || '') : '';\n\n/* ---------------- جدول از کاربر وضعیت MySQL
+(bot_users) ---------------- */\nconst rows = $input\n  .all()\n  .map((i) => i.json)\n 
+.filter((r) => r && r.chat_id !== undefined && r.chat_id !== null && String(r.chat_id) !==
+'');\n\nlet state = rows.find((r) => String(r.chat_id) === chatId);\nif (!state) {\n  state = {
+chat_id: chatId, state: 'idle', name: '', company: '', phone: '', tg_name: tgName, username: '',
+lottery: '0', last_msg_id: null, registered_at: null };\n}\nstate = Object.assign({}, state); //
+نکنه تغییر اصلی ردیف تا ،کپی\nif (!state.tg_name) state.tg_name = tgName;\nif (username) state.username =
+username;\n\nlet reply = null;\nlet registeredAt = null;\nconst isAdmin =
+CONFIG.adminIds.map(String).includes(userId);\nconst send = (t, k) => { reply = { text: t,
+keyboard: k }; };\nconst menuHint = (extra) => (extra ? extra + '\\n\\n' : '') + 'انتخاب پایین دکمههای از
+کن\;'�� n\nif (data) {\n  /* ---------- شیشهای دکمههای ----------* /\n  if (data === 'menu') {\n   
+send(menuHint('اصلی منوی:(', menuKb());\n  } else if (data === 'agenda') {\n    send(AGENDA,
+backKb());\n  } else if (data === 'products') {\n    send(\n      '🚀 ما محصوالت\\n\\nدر ،بار اولین برای
+میشن رونمایی دهسالگی جشن:\\n\\n' +\n        PRODUCTS.map((p, i) => (i + 1) + '. ' +
+p.label).join('\\n') +\n        '\\n\\nبزن کدوم هر روی جزئیات برای:',\n      productsKb()\n    );\n  }
+else if (PRODUCTS.some((p) => p.id === data)) {\n    send(PRODUCTS.find((p) => p.id ===
+data).text, backKb());\n  } else if (data === 'rsvp') {\n    if (state.state === 'done') {\n     
+{    n());\menuKb , 🎉'منتظرتیمn!\\عزیز، قبًال برای مراسم ثبتنام کردی ' + (tgName || name.state (+('✅ ' send
+else {\n      state.state = 'awaiting_name';\n      send('📝 دهسالگی مراسم در ثبتنام\\n\\nرو فامیلت و اسم
+بنویس همینجا:', kb([cancelRow]));\n    }\n  } else if (data === 'cancel') {\n    state.state =
+=== data (if else }  n());\menuKb , 🙂'ثبتنام لغو شد. هر وقت خواستی از منو دوباره شروع کن')send    n';\idle'
+'quiz') {\n    if (String(state.lottery) === '1') {\n      send('🎁 هستی قرعهکشی تو الًقب تو\\!nرو نتیجه
+میکنیم اعالم مراسم در حضوری'�� , menuKb());\n    } else {\n      send(QUIZ.question, quizKb());\n   
+}\n  } else if (data.indexOf('quiz:') === 0) {\n    const idx = parseInt(data.split(':')[1],
+,'�� تو قبًال جواب درست دادی و تو قرعهکشی هستی')send      n') {\1) === 'lottery.state(String (if    n);\10
+menuKb());\n    } else if (idx === QUIZ.correctIndex) {\n      state.lottery = '1';\n     
+{    n());\menuKb , 🤞'برندهها حضوری اعالم میشنn\\.اسم تو قرعهکشی مراسم ثبت شدn\\.آفرین! جواب درست بود ��')send
+else {\n      send('❌ کن امتحان دیگه بار یه! بود اشتباه:', quizKb());\n    }\n  } else {\n   
+پیام متنی ---------- */  n {\else} n }\ n());\menuKb ,'):دکمه نامعتبره. از منوی اصلی انتخاب کن')menuHint(send
+---------- */\n  const command = text.split(' ')[0];\n  if (command === '/start') {\n    if
+(state.state && state.state !== 'idle') { state.state = 'idle'; }\n    send(\n      'سالم ' +
+�� !خوش اومدی ' + companyName.CONFIG + ' به بات رسمی جشن دهسالگی'        n\+' n\\n 👋\\عزیز ' + tgName
+       n\+' n\\n 🚀\\امسال عالوه بر جشن، برای اولین بار ۳ محصول جدیدمون رو رونمایی میکنیم'        n\+' n\\n\\
+menuHint(),\n      menuKb()\n    );\n  } else if (command === '/menu') {\n    send(menuHint(),
+menuKb());\n  } else if (command === '/lottery' && isAdmin) {\n    const count = Math.max(1,
+parseInt(faDigitsToEn(text.split(' ')[1]), 10) || 1);\n    const pool = rows.filter((r) =>
+String(r.lottery) === '1');\n    if (pool.length === 0) {\n      send('نکرده شرکت قرعهکشی تو کسی هنوز
+😕');\n    } else {\n      for (let i = pool.length - 1; i > 0; i--) {\n        const j =
+Math.floor(Math.random() * (i + 1));\n        [pool[i], pool[j]] = [pool[j], pool[i]];\n     
+}\n      const winners = pool.slice(0, Math.min(count, pool.length));\n      const list =
+winners.map((w, i) => (i + 1) + '. ' + (w.name || w.tg_name || 'اسم بدون(('.join('\\n');\n     
+send('🎉 قرعهکشی برندههای:\\n\\n' + list + '\\n\\nباشی موفق\;('�� !n    }\n  } else if (command ===
+'/stats' && isAdmin) {\n    const guests = rows.filter((r) => String(r.state) ===
+'done').length;\n    const lottery = rows.filter((r) => String(r.lottery) === '1').length;\n   
+{  n');\نفر ' + lottery + ' :شرکتکننده قرعهکشی •n\\نفر ' + guests + ' :ثبتنام کامل •n\\n\\:آمار بات ��')send
+else if (!text) {\n    send('بفهمم متنی پیام میتونم فقط الًفع\\�� n' + menuHint(), menuKb());\n  } else if
+(state.state === 'awaiting_name') {\n    state.name = text;\n    state.state =
+اسم شرکت یا سمتت رو بنویس )اگه مرتبط نیست »-«n\\n ' 🙌\\+ text + ' چه خوب')send    n';\company_awaiting'
+)بفرست:', kb([cancelRow]));\n  } else if (state.state === 'awaiting_company') {\n    state.company
+= text === '-' ? '' : text;\n    state.state = 'awaiting_phone';\n    send('الًمث )بفرست رو تماست شماره
+)۰۹۱۲۳۴۵۶۷۸۹:', kb([cancelRow]));\n  } else if (state.state === 'awaiting_phone') {\n    const phone =
+faDigitsToEn(text).replace(/[^\\d+]/g, '');\n    if (!/^(\\+?98|0)?9\\d{9}$/.test(phone)) {\n     
+با فرمت ۰۹۱۲۳۴۵۶۷۸۹ بفرستn\\.این شماره معتبر به نظر نمیرسه ️⚠')send
+اًلطف:', kb([cancelRow]));\n    } else
+{\n      state.phone = phone;\n      state.state = 'done';\n      registeredAt = nowSql();\n     
+send(\n        '✅ شد کامل ثبتنامت، ' + state.name + '!\\n\\n' +\n          '📅 ' + CONFIG.eventDate +
+راستی، قبل از مراسم حتمًا سر به معرفیn 🎉\\منتظرتیم'          n\+' n\\n '\\+ eventPlace.CONFIG +📍 ' n'\\
+بزن محصوالت'�� ,\n        menuKb()\n      );\n    }\n  } else {\n    send('نشدم متوجه\\�� n' +
+---------------- پیام قبلی بات که باید حذف بشه ---------------- */n\n}\n }\ n());\menuKb ,()menuHint
+prevMsgId nconst\اگه کاربر دکمه زده، همون پیامی که دکمه روشه حذف میشه؛ در غیر اینصورت آخرین پیام ذخیرهشدهی بات //n\/*
+= cb ? Number(cb.message.message_id) : (state.last_msg_id ? Number(state.last_msg_id) : 0);\n\n/*
+---------------- بعدی نودهای برای خروجی ----------------* /\nif (!reply) return [];\n\nreturn [\n 
+{\n    json: {\n      botToken: CONFIG.botToken,\n      hasPrev: prevMsgId > 0,\n      deleteBody:
+prevMsgId > 0 ? { chat_id: chatId, message_id: prevMsgId } : null,\n      replyBody: {\n       
+chat_id: chatId,\n        text: reply.text,\n        reply_markup: reply.keyboard,\n     
+},\n      newState: {\n        chat_id: String(state.chat_id),\n        state:
+state.state,\n        name: state.name || '',\n        company: state.company || '',\n       
+phone: state.phone || '',\n        tg_name: state.tg_name || '',\n        username: state.username
+|| '',\n        lottery: String(state.lottery) === '1' ? 1 : 0,\n        registered_at:
+registeredAt,\n      },\n    },\n  },\n];\n"
+      },
+      "id": "6398e848-0678-485d-923c-9f485ca2ceee",
+      "name": "Brain",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -496,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-has-prev",
+              "leftValue": "={{ $json.hasPrev }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1f0c2d4-1111-4a2b-8c01-000000000001",
+      "name": "IF Has Prev Msg",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $json.botToken }}/deleteMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.deleteBody) }}",
+        "options": {}
+      },
+      "id": "a1f0c2d4-2222-4a2b-8c01-000000000002",
+      "name": "Delete Prev Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        48
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $('Brain').first().json.botToken }}/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('Brain').first().json.replyBody) }}",
+        "options": {}
+      },
+      "id": "1b584910-acb0-48f4-adde-9e32c817e97d",
+      "name": "Send Reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO bot_users (chat_id, state, name, company, phone, tg_name, username,
+lottery, last_msg_id, registered_at)\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\nON DUPLICATE KEY
+UPDATE\n  state = VALUES(state),\n  name = VALUES(name),\n  company = VALUES(company),\n  phone =
+VALUES(phone),\n  tg_name = VALUES(tg_name),\n  username = VALUES(username),\n  lottery =
+VALUES(lottery),\n  last_msg_id = VALUES(last_msg_id),\n  registered_at =
+COALESCE(VALUES(registered_at), registered_at);",
+        "options": {
+          "queryReplacement": "={{ [ $('Brain').first().json.newState.chat_id,
+$('Brain').first().json.newState.state, $('Brain').first().json.newState.name,
+$('Brain').first().json.newState.company, $('Brain').first().json.newState.phone,
+$('Brain').first().json.newState.tg_name, $('Brain').first().json.newState.username,
+$('Brain').first().json.newState.lottery, $('Send Reply').first().json.result.message_id,
+$('Brain').first().json.newState.registered_at ] }}"
+        }
+      },
+      "id": "2354b41c-a901-4ccb-b26e-1be406c92457",
+      "name": "Upsert State",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        480,
+        144
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read States",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read States": {
+      "main": [
+        [
+          {
+            "node": "Brain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brain": {
+      "main": [
+        [
+          {
+            "node": "IF Has Prev Msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Has Prev Msg": {
+      "main": [
+        [
+          {
+            "node": "Delete Prev Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Prev Message": {
+      "main": [
+        [
+          {
+            "node": "Send Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Reply": {
+      "main": [
+        [
+          {
+            "node": "Upsert State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
